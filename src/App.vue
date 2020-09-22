@@ -1,13 +1,18 @@
 <template>
   <div id="app">
+    <h1>Taxi app</h1>
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/login">login</router-link>
+      <router-link to="/login">login</router-link> |
+      <router-link to="/test">test page</router-link>
+     
     </div>
     <router-view/>
   </div>
 </template>
+<script>
 
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
