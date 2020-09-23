@@ -1,11 +1,11 @@
 <template>
-	<div>
+	<v-app>
 		<form action="">
 			<input type="email" v-model="email" placeholder="email">
 			<input type="password" v-model="password" placeholder="pass">
 			<button @click="login">Login</button>
 		</form>
-	</div>
+	</v-app>
 </template>
 
 <script>
