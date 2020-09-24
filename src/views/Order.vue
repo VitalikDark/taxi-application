@@ -18,7 +18,7 @@
 							<strong>Новые заказы</strong>
 							<ul v-for="item in orders.filter(item => item.type===1)">
 								<li>Id - {{item.id}}</li>
-								<li>Время - {{item.date_time}}</li>
+								<li>Время - {{ formatDate(item.date_time) }}</li>
 								<li>Phone - {{item.phone}}</li>
 								<li v-for="i in item.routes">
 									Routes
@@ -61,8 +61,7 @@
 				</v-tab-item>
 			</v-tabs-items>
 		</v-card>
-<!--		tabs-->
-	
+		<!--		tabs-->
 	
 	
 	</v-app>
@@ -70,13 +69,14 @@
 
 <script>
     import {mapState} from 'vuex'
+    import {formatDate} from '../plugins/date' //подключаем правильный формат даты
 
     export default {
-        name: "Test",
+        name: "Order",
         data() {
             return {
                 tab: null, //tabs
-                orders: [] //заказы
+                orders: [], //заказыб
             }
         },
         computed: mapState([
@@ -91,13 +91,16 @@
             axios.post('https://taxiadmin.ddns.mksat.net/taxi/api/v2/disp/orders', {types: [1, 2, 3]}, {
                 headers: headers,
             })
-                .then((response) => {
+                .then((response) => {// заказы клиентов
                     this.orders = response.data.response
                     console.log('ORDERS ', this.orders)
                 })
-                .catch((error) => {
+                .catch((error) => { //для ошыбок
                     console.log('Пам-Пам ', error)
                 })
+        },
+        methods: {
+            formatDate: formatDate//получаем формат даты
         }
     }
 </script>
